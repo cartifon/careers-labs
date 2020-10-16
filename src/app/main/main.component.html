@@ -1,8 +1,30 @@
-<ng-container *ngFor="let report of reports">
-  <app-receipt [description]="report.description" [amount]="report.amount" [currency]="report.currency"></app-receipt>
-</ng-container>
 <div class="main-container">
-  <button mat-fab color="accent" (click)="addReport()">
+  <button mat-fab color="accent" (click)="addReport()" [disabled]="isDisabled()">
     <mat-icon>add</mat-icon>
   </button>
 </div>
+<div *ngFor="let report of reports; let i = index">
+  <mat-form-field appearance="legacy">
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="reports[i].description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Amount</mat-label>
+    <input matInput [(ngModel)]="reports[i].amount" type="number" (ngModelChange)="updateTotal()">
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Currency</mat-label>
+    <mat-select (selectionChange)="updateTotal()" [(ngModel)]="reports[i].currency">
+      <mat-option [value]="currency" *ngFor="let currency of currencies">{{currency}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="main-total-bar" *ngIf="reports.length > 0">
+  <mat-label>Total CAD: {{ total | currency}} </mat-label>
+</div>
+<div class="error-message" *ngIf="total > 1000">
+  You can't submit more than $1,000
+</div>
+<button *ngIf="reports.length > 0" mat-raised-button color="primary" [disabled]="total > 1000" (click)="submitReport()">Submit Expense</button>

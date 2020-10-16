@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  exchangeApiUrl: 'https://api.exchangeratesapi.io/latest?base=CAD'
+  exchangeApiUrl: 'https://api.exchangeratesapi.io/latest'
 };
 
 /*
