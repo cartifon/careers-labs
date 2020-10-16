@@ -1,0 +1,8 @@
+<ng-container *ngFor="let report of reports">
+  <app-receipt [description]="report.description" [amount]="report.amount" [currency]="report.currency"></app-receipt>
+</ng-container>
+<div class="main-container">
+  <button mat-fab color="accent" (click)="addReport()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,11 @@
+.receipt-container {
+    margin: auto 0;
+    padding: 0 2rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+
+    mat-form-field {
+      padding-right: 1rem;
+    }
+}
